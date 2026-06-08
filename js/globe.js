@@ -270,10 +270,6 @@
         showFallback();
       });
 
-    const prefersReducedMotion =
-      typeof window.matchMedia === 'function' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     const ROTATION_SPEED = 14; // degrees per second
     const ARC_PERIOD = 4500; // ms for arcs to draw and reset
 
@@ -281,12 +277,6 @@
     let running = false;
     let startTime = null;
     let elapsedBase = 0; // animation time accumulated before the last pause
-
-    // A single composed frame for reduced-motion users (no continuous loop).
-    function renderStaticFrame() {
-      projection.rotate([-40, -15]);
-      render(1);
-    }
 
     function frame(now) {
       const t = now || performance.now();
@@ -303,7 +293,7 @@
     }
 
     function startAnimation() {
-      if (running || prefersReducedMotion) return;
+      if (running) return;
       running = true;
       startTime = null; // rebased on first frame so motion resumes seamlessly
       rafId = requestAnimationFrame(frame);
@@ -320,14 +310,9 @@
       }
     }
 
-    // Entry point: honor reduced motion, otherwise animate only while the
-    // globe is visible and the tab is active to spare low-power devices.
+    // Entry point: animate only while the globe is visible and the tab is
+    // active to spare low-power devices.
     function start() {
-      if (prefersReducedMotion) {
-        renderStaticFrame();
-        return;
-      }
-
       startAnimation();
 
       if ('IntersectionObserver' in window) {
