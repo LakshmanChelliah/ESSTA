@@ -223,11 +223,9 @@ a:hover {
 
 .hero-journey {
   margin: 0;
-  padding: 1.25rem;
-  background: rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(8px);
+  padding: 0;
+  background: transparent;
+  border: none;
 }
 
 .globe-wrap {
@@ -277,13 +275,12 @@ a:hover {
 }
 
 .journey-caption {
-  margin: 1.25rem 0 0;
-  padding-top: 1rem;
+  margin: 0.5rem auto 0;
+  max-width: 30rem;
   font-size: 0.95rem;
   line-height: 1.5;
   text-align: center;
   color: rgba(255, 255, 255, 0.85);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .journey-caption strong {
@@ -968,14 +965,19 @@ a:hover {
     gap: 2rem;
   }
 
-  .hero-journey {
+  /* Content first on mobile: heading + primary action stay above the fold,
+     the decorative globe follows as a supporting accent. */
+  .hero-content {
     order: -1;
-    max-width: 32rem;
+  }
+
+  .hero-journey {
+    max-width: 28rem;
     margin-inline: auto;
   }
 
   .hero {
-    padding: 4rem 0 5rem;
+    padding: 3.5rem 0 4rem;
   }
 
   .section {
@@ -997,6 +999,26 @@ a:hover {
 
   .membership-form {
     padding: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .globe-wrap {
+    max-width: 18rem;
+  }
+
+  .journey-caption {
+    font-size: 0.9rem;
+  }
+
+  /* Full-width, easy-to-tap actions stacked vertically on small phones */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 }
 
