@@ -126,6 +126,7 @@ a:hover {
 
 .site-nav ul {
   display: flex;
+  align-items: center;
   gap: 0.25rem;
   list-style: none;
   margin: 0;
@@ -134,9 +135,10 @@ a:hover {
 
 .site-nav a {
   display: block;
-  padding: 0.625rem 1rem;
+  padding: 0.5rem 0.75rem;
   font-weight: 600;
   font-size: 0.95rem;
+  white-space: nowrap;
   text-decoration: none;
   color: var(--color-text);
   border-radius: 999px;
