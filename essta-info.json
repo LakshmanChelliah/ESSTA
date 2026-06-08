@@ -1,0 +1,34 @@
+{
+  "organization": {
+    "inferred_acronym": "ESSTA",
+    "board_members": [
+      { "role": "President", "name": "Murugesu Sahadevan" },
+      { "role": "Vice President", "name": "Balasubramaniam Ramalingam" },
+      { "role": "Joint Secretary", "name": "Yogeswary Sivaganesanathan" },
+      { "role": "Secretary", "name": "Sivashanthi Thiagarajah" },
+      { "role": "Treasurer", "name": "Sinnathurai Subramaniam" },
+      { "role": "Director", "name": "Sri Kumar Thevarajah" }
+    ],
+    "contact": {
+      "address": {
+        "unit": "125",
+        "street": "12025 - 22 Ave SW",
+        "city": "Edmonton",
+        "province": "AB",
+        "postal_code": "T6W 2Y1",
+        "country": "Canada"
+      },
+      "inquiries_email": "info@essta.ca",
+      "other_emails": [
+        "Shanthi.Thiagarajah@gmail.com",
+        "rosa.yoga@hotmail.com"
+      ]
+    },
+    "membership": {
+      "fee": 30,
+      "currency": "CAD",
+      "unit": "per person per year",
+      "term": "June to May"
+    }
+  }
+}
