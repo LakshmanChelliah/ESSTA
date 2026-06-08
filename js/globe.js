@@ -78,7 +78,7 @@
     let borders = null;
     let countries = [];
 
-    // Great-circle arcs from origin to each destination
+    // Direct great-circle (flight path) arcs from origin to each destination
     const arcs = DESTINATIONS.map(function (d) {
       return {
         name: d.name,
@@ -264,19 +264,24 @@
         resize();
         window.addEventListener('resize', resize);
 
-        animate();
+        start();
       })
       .catch(function () {
         showFallback();
       });
 
-    let startTime = null;
     const ROTATION_SPEED = 14; // degrees per second
     const ARC_PERIOD = 4500; // ms for arcs to draw and reset
 
-    function animate(now) {
-      if (startTime === null) startTime = now || performance.now();
-      const elapsed = (now || performance.now()) - startTime;
+    let rafId = null;
+    let running = false;
+    let startTime = null;
+    let elapsedBase = 0; // animation time accumulated before the last pause
+
+    function frame(now) {
+      const t = now || performance.now();
+      if (startTime === null) startTime = t;
+      const elapsed = elapsedBase + (t - startTime);
 
       const lambda = (-20 - (elapsed / 1000) * ROTATION_SPEED) % 360;
       projection.rotate([lambda, -12]);
@@ -284,7 +289,55 @@
       const arcProgress = (elapsed % ARC_PERIOD) / ARC_PERIOD;
       render(arcProgress);
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function startAnimation() {
+      if (running) return;
+      running = true;
+      startTime = null; // rebased on first frame so motion resumes seamlessly
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function stopAnimation() {
+      if (!running) return;
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      if (startTime !== null) {
+        elapsedBase += performance.now() - startTime;
+        startTime = null;
+      }
+    }
+
+    // Entry point: animate only while the globe is visible and the tab is
+    // active to spare low-power devices.
+    function start() {
+      startAnimation();
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                startAnimation();
+              } else {
+                stopAnimation();
+              }
+            });
+          },
+          { threshold: 0 }
+        );
+        io.observe(canvas);
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          stopAnimation();
+        } else {
+          startAnimation();
+        }
+      });
     }
   }
 

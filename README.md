@@ -34,12 +34,12 @@ ESSLTA/
 
 ## Sections
 
-- **Hero** — Association name and mission summary
-- **Heritage** — Tamil history and Sri Lankan Tamil migration
-- **Our Community** — Edmonton Tamil community contributions
-- **About ESSTA** — Purpose of the association
-- **Programs** — Objectives and planned activities
-- **Contact** — Get in touch (update email/details as needed)
+- **Hero**: Association name and mission summary
+- **Heritage**: Tamil history and Sri Lankan Tamil migration
+- **Our Community**: Edmonton Tamil community contributions
+- **About ESSTA**: Purpose of the association
+- **Programs**: Objectives and planned activities
+- **Contact**: Get in touch (update email/details as needed)
 
 ## Customization
 
