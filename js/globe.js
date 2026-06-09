@@ -10,19 +10,28 @@
 
   // ISO 3166-1 numeric ids used by world-atlas
   const SRI_LANKA_ID = '144';
-  const DESTINATION_IDS = {
-    '124': 'Canada',
-    '840': 'USA',
+  const CANADA_ID = '124';
+  // Diaspora countries mentioned in the heritage story, shaded red
+  const DIASPORA_IDS = {
+    '826': 'UK',
+    '250': 'France',
     '276': 'Germany',
-    '36': 'Australia'
+    '380': 'Italy',
+    '528': 'Netherlands',
+    '578': 'Norway',
+    '208': 'Denmark',
+    '036': 'Australia'
   };
 
   // [longitude, latitude]
   const ORIGIN = [80.77, 7.87]; // Sri Lanka
-  const DESTINATIONS = [
-    { name: 'Canada', coords: [-106, 56] },
-    { name: 'USA', coords: [-98, 39] },
-    { name: 'Germany', coords: [10.4, 51.1] },
+  const CANADA = { name: 'Canada', coords: [-113.49, 53.55] }; // final destination (Edmonton, Alberta)
+  // Arc/marker endpoints (kept few to avoid clutter). Country shading is
+  // driven separately by DIASPORA_IDS, so every country still appears red.
+  const DIASPORA = [
+    { name: 'UK', coords: [-2, 54] },
+    { name: 'Western Europe', coords: [5, 49] },
+    { name: 'Scandinavia', coords: [11, 60] },
     { name: 'Australia', coords: [134, -25] }
   ];
 
@@ -33,8 +42,10 @@
   const COLOR_GRATICULE = 'rgba(232, 212, 139, 0.12)';
   const COLOR_SPHERE_STROKE = 'rgba(232, 212, 139, 0.45)';
   const COLOR_SRI_LANKA = '#e3342f';
-  const COLOR_DEST = '#e8d48b';
-  const COLOR_ARC = '#f3c64a';
+  const COLOR_DIASPORA = 'rgba(227, 52, 47, 0.85)'; // mentioned countries, red shade
+  const COLOR_CANADA = '#e8d48b'; // destination, gold
+  const COLOR_ARC_OUT = '#f3c64a'; // Sri Lanka -> abroad (gold)
+  const COLOR_ARC_IN = '#ff5b4d'; // abroad -> Canada (red)
 
   let d3Lib = null;
   let topojsonLib = null;
@@ -78,12 +89,23 @@
     let borders = null;
     let countries = [];
 
-    // Direct great-circle (flight path) arcs from origin to each destination
-    const arcs = DESTINATIONS.map(function (d) {
+    // Stage 1: great-circle arcs from Sri Lanka out to each diaspora country
+    const outboundArcs = DIASPORA.map(function (d) {
       return {
         name: d.name,
-        target: d.coords,
+        from: ORIGIN,
+        to: d.coords,
         interpolate: d3.geoInterpolate(ORIGIN, d.coords)
+      };
+    });
+
+    // Stage 2: arcs from each diaspora country converging on Canada
+    const inboundArcs = DIASPORA.map(function (d) {
+      return {
+        name: d.name,
+        from: d.coords,
+        to: CANADA.coords,
+        interpolate: d3.geoInterpolate(d.coords, CANADA.coords)
       };
     });
 
@@ -113,31 +135,58 @@
       return projection(coords);
     }
 
-    function drawArc(arc, headFraction) {
+    function drawArrowhead(tip, prev, color) {
+      if (!tip || !prev) return;
+      const angle = Math.atan2(tip[1] - prev[1], tip[0] - prev[0]);
+      const size = 7;
+      const spread = 0.45;
+      context.beginPath();
+      context.moveTo(tip[0], tip[1]);
+      context.lineTo(
+        tip[0] - size * Math.cos(angle - spread),
+        tip[1] - size * Math.sin(angle - spread)
+      );
+      context.lineTo(
+        tip[0] - size * Math.cos(angle + spread),
+        tip[1] - size * Math.sin(angle + spread)
+      );
+      context.closePath();
+      context.fillStyle = color;
+      context.fill();
+    }
+
+    function drawArc(arc, headFraction, color, withArrow) {
       // Build a partial great-circle line up to headFraction (0..1)
       const steps = 48;
-      const upto = Math.max(1, Math.floor(steps * headFraction));
+      const head = Math.max(0, Math.min(1, headFraction));
+      const upto = Math.max(1, Math.floor(steps * head));
       const line = { type: 'LineString', coordinates: [] };
       for (let i = 0; i <= upto; i++) {
-        line.coordinates.push(arc.interpolate(Math.min(1, (i / steps))));
+        line.coordinates.push(arc.interpolate(Math.min(head, i / steps)));
       }
       context.beginPath();
       path(line);
-      context.strokeStyle = COLOR_ARC;
+      context.strokeStyle = color;
       context.lineWidth = 1.8;
       context.globalAlpha = 0.9;
       context.stroke();
       context.globalAlpha = 1;
 
-      // Moving head dot
-      const headCoord = arc.interpolate(Math.min(1, headFraction));
+      // Head position + the point just before it (for arrow direction)
+      const headCoord = arc.interpolate(head);
+      const prevCoord = arc.interpolate(Math.max(0, head - 0.04));
       if (isVisible(headCoord)) {
         const p = project(headCoord);
+        const pPrev = project(prevCoord);
         if (p) {
-          context.beginPath();
-          context.arc(p[0], p[1], 3, 0, 2 * Math.PI);
-          context.fillStyle = '#fff';
-          context.fill();
+          if (withArrow && head >= 0.999) {
+            drawArrowhead(p, pPrev, color);
+          } else {
+            context.beginPath();
+            context.arc(p[0], p[1], 3, 0, 2 * Math.PI);
+            context.fillStyle = '#fff';
+            context.fill();
+          }
         }
       }
     }
@@ -175,7 +224,7 @@
       }
     }
 
-    function render(arcProgress) {
+    function render(cycleProgress) {
       context.clearRect(0, 0, width, height);
 
       // Sphere / ocean
@@ -204,17 +253,27 @@
         context.stroke();
       }
 
-      // Destination countries highlighted in gold
+      // Diaspora countries shaded red (where Tamils migrated)
       countries.forEach(function (c) {
-        if (DESTINATION_IDS[c.id]) {
+        if (DIASPORA_IDS[c.id]) {
           context.beginPath();
           path(c);
-          context.fillStyle = 'rgba(232, 212, 139, 0.55)';
+          context.fillStyle = COLOR_DIASPORA;
           context.fill();
         }
       });
 
-      // Sri Lanka highlighted in red (drawn slightly enlarged via marker too)
+      // Canada highlighted in gold (final destination)
+      countries.forEach(function (c) {
+        if (c.id === CANADA_ID) {
+          context.beginPath();
+          path(c);
+          context.fillStyle = 'rgba(232, 212, 139, 0.7)';
+          context.fill();
+        }
+      });
+
+      // Sri Lanka highlighted in solid red (origin)
       countries.forEach(function (c) {
         if (c.id === SRI_LANKA_ID) {
           context.beginPath();
@@ -224,15 +283,28 @@
         }
       });
 
-      // Arcs
-      arcs.forEach(function (arc) {
-        drawArc(arc, arcProgress);
+      // Two-stage flow:
+      //   Stage 1 (first ~half): Sri Lanka -> diaspora countries
+      //   Stage 2 (second half): diaspora countries -> Canada
+      const outHead = Math.min(1, cycleProgress / 0.45);
+      const inHead = Math.min(1, Math.max(0, (cycleProgress - 0.5) / 0.45));
+
+      outboundArcs.forEach(function (arc) {
+        drawArc(arc, outHead, COLOR_ARC_OUT, false);
+      });
+      if (cycleProgress >= 0.5) {
+        inboundArcs.forEach(function (arc) {
+          drawArc(arc, inHead, COLOR_ARC_IN, true);
+        });
+      }
+
+      // Diaspora markers (no labels)
+      DIASPORA.forEach(function (d) {
+        drawMarker(d.coords, null, COLOR_DIASPORA, 3);
       });
 
-      // Destination markers
-      DESTINATIONS.forEach(function (d) {
-        drawMarker(d.coords, d.name, COLOR_DEST, 3.5);
-      });
+      // Canada marker (destination)
+      drawMarker(CANADA.coords, CANADA.name, COLOR_CANADA, 4.5);
 
       // Origin marker (Sri Lanka) on top
       drawMarker(ORIGIN, 'Sri Lanka', COLOR_SRI_LANKA, 4.5);
@@ -270,8 +342,8 @@
         showFallback();
       });
 
-    const ROTATION_SPEED = 14; // degrees per second
-    const ARC_PERIOD = 4500; // ms for arcs to draw and reset
+    const ROTATION_SPEED = 12; // degrees per second
+    const ARC_PERIOD = 8000; // ms for the full two-stage flow to draw and reset
 
     let rafId = null;
     let running = false;
@@ -284,10 +356,10 @@
       const elapsed = elapsedBase + (t - startTime);
 
       const lambda = (-20 - (elapsed / 1000) * ROTATION_SPEED) % 360;
-      projection.rotate([lambda, -12]);
+      projection.rotate([lambda, -28]);
 
-      const arcProgress = (elapsed % ARC_PERIOD) / ARC_PERIOD;
-      render(arcProgress);
+      const cycleProgress = (elapsed % ARC_PERIOD) / ARC_PERIOD;
+      render(cycleProgress);
 
       rafId = requestAnimationFrame(frame);
     }

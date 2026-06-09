@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20260608c">
   <link rel="icon" href="essta.png" type="image/png">
 </head>
 <body>
@@ -77,9 +77,11 @@
           </figcaption>
 
           <p class="sr-only">
-            An animated spinning globe highlighting Sri Lanka in red, with an arc tracing the
-            migration of Sri Lankan Tamils to Canada,
-            where the Edmonton Senior Sri Lankan Tamils Association was formed.
+            An animated spinning globe highlighting Sri Lanka in red as the origin, with the
+            diaspora countries the community migrated to &mdash; the UK, France, Germany, Italy,
+            the Netherlands, Norway, Denmark, and Australia &mdash; also shaded red. Arrows from
+            each of these countries converge on Canada, where the Edmonton Senior Sri Lankan
+            Tamils Association was formed.
           </p>
         </figure>
       </div>
@@ -196,27 +198,60 @@
         <ul class="board-list">
           <li class="board-card">
             <span class="board-role">President</span>
-            <span class="board-name">Murugesu Sahadevan</span>
+            <div class="board-member">
+              <span class="board-avatar" aria-hidden="true">MS</span>
+              <span class="board-person">
+                <span class="board-name">Mr. Murugesu Sahadevan</span>
+                <span class="board-nickname">Saha</span>
+              </span>
+            </div>
           </li>
           <li class="board-card">
             <span class="board-role">Vice President</span>
-            <span class="board-name">Balasubramaniam Ramalingam</span>
-          </li>
-          <li class="board-card">
-            <span class="board-role">Secretary</span>
-            <span class="board-name">Sivashanthi Thiagarajah</span>
+            <div class="board-member">
+              <span class="board-avatar" aria-hidden="true">BR</span>
+              <span class="board-person">
+                <span class="board-name">Mr. Balasubramaniam Ramalingam</span>
+                <span class="board-nickname">Bala</span>
+              </span>
+            </div>
           </li>
           <li class="board-card">
             <span class="board-role">Joint Secretary</span>
-            <span class="board-name">Yogeswary Sivaganesanathan</span>
+            <div class="board-member">
+              <span class="board-avatar" aria-hidden="true">ST</span>
+              <span class="board-person">
+                <span class="board-name">Mrs. Sivashanthi Thiagarajah</span>
+                <span class="board-nickname">Shanthi</span>
+              </span>
+            </div>
+            <div class="board-member">
+              <span class="board-avatar" aria-hidden="true">YS</span>
+              <span class="board-person">
+                <span class="board-name">Mrs. Yogeswary Sivaganesanathan</span>
+                <span class="board-nickname">Yoge</span>
+              </span>
+            </div>
           </li>
           <li class="board-card">
             <span class="board-role">Treasurer</span>
-            <span class="board-name">Sinnathurai Subramaniam</span>
+            <div class="board-member">
+              <span class="board-avatar" aria-hidden="true">SS</span>
+              <span class="board-person">
+                <span class="board-name">Mr. Sinnathurai Subramaniam</span>
+                <span class="board-nickname">Subra</span>
+              </span>
+            </div>
           </li>
           <li class="board-card">
             <span class="board-role">Director</span>
-            <span class="board-name">Sri Kumar Thevarajah</span>
+            <div class="board-member">
+              <span class="board-avatar" aria-hidden="true">ST</span>
+              <span class="board-person">
+                <span class="board-name">Mr. Srikumar Thevarajah</span>
+                <span class="board-nickname">Kumar</span>
+              </span>
+            </div>
           </li>
         </ul>
       </div>
@@ -438,6 +473,6 @@
   <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js" defer></script>
-  <script src="js/globe.js" defer></script>
+  <script src="js/globe.js?v=20260608h" defer></script>
 </body>
 </html>

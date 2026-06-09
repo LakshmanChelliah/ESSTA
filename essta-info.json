@@ -2,12 +2,12 @@
   "organization": {
     "inferred_acronym": "ESSTA",
     "board_members": [
-      { "role": "President", "name": "Murugesu Sahadevan" },
-      { "role": "Vice President", "name": "Balasubramaniam Ramalingam" },
-      { "role": "Joint Secretary", "name": "Yogeswary Sivaganesanathan" },
-      { "role": "Secretary", "name": "Sivashanthi Thiagarajah" },
-      { "role": "Treasurer", "name": "Sinnathurai Subramaniam" },
-      { "role": "Director", "name": "Sri Kumar Thevarajah" }
+      { "role": "President", "name": "Mr. Murugesu Sahadevan", "nickname": "Saha" },
+      { "role": "Vice President", "name": "Mr. Balasubramaniam Ramalingam", "nickname": "Bala" },
+      { "role": "Joint Secretary", "name": "Mrs. Sivashanthi Thiagarajah", "nickname": "Shanthi" },
+      { "role": "Joint Secretary", "name": "Mrs. Yogeswary Sivaganesanathan", "nickname": "Yoge" },
+      { "role": "Treasurer", "name": "Mr. Sinnathurai Subramaniam", "nickname": "Subra" },
+      { "role": "Director", "name": "Mr. Srikumar Thevarajah", "nickname": "Kumar" }
     ],
     "contact": {
       "address": {
