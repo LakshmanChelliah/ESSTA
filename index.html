@@ -8,13 +8,13 @@
   <meta property="og:description" content="Supporting Edmonton's senior Sri Lankan Tamil community through social participation, wellness, companionship, and cultural connection.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://essta.ca">
-  <meta property="og:image" content="https://essta.ca/essta.png">
+  <meta property="og:image" content="https://essta.ca/IMG_0520.JPG">
   <meta name="theme-color" content="#5c1520">
   <title>ESSTA | Edmonton Senior Sri Lankan Tamils Association</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260610a">
+  <link rel="stylesheet" href="css/styles.css?v=20260610c">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="favicon-180.png">
 </head>
@@ -24,7 +24,7 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="logo" href="#top" aria-label="ESSTA Home">
-        <img class="logo-mark" src="essta.png" alt="" width="48" height="48">
+        <img class="logo-mark" src="IMG_0520.JPG" alt="" width="48" height="48">
         <span class="logo-text">
           <small>Edmonton Senior Sri Lankan Tamils Association</small>
         </span>
@@ -185,7 +185,7 @@
             </p>
           </div>
           <div class="about-visual">
-            <img class="about-logo" src="essta.png" alt="ESSTA logo" width="240" height="240" style="width:15rem;height:auto;">
+            <img class="about-logo" src="IMG_0520.JPG" alt="ESSTA logo" width="240" height="240" style="width:15rem;height:auto;">
           </div>
         </div>
       </div>
@@ -203,15 +203,23 @@
         </div>
 
         <ul class="board-list">
-          <li class="board-card">
-            <span class="board-role">President</span>
-            <div class="board-member">
-              <span class="board-avatar" aria-hidden="true">MS</span>
-              <span class="board-person">
-                <span class="board-name">Mr. Murugesu Sahadevan</span>
-                <span class="board-nickname">Saha</span>
-              </span>
-            </div>
+          <li class="board-card board-card--interactive">
+            <button
+              type="button"
+              class="board-card-button"
+              id="president-board-card"
+              aria-haspopup="dialog"
+              aria-controls="president-profile-dialog"
+            >
+              <span class="board-role">President</span>
+              <div class="board-member">
+                <span class="board-avatar" aria-hidden="true">MS</span>
+                <span class="board-person">
+                  <span class="board-name">Mr. Murugesu Sahadevan</span>
+                  <span class="board-nickname">Saha</span>
+                </span>
+              </div>
+            </button>
           </li>
           <li class="board-card">
             <span class="board-role">Vice President</span>
@@ -262,32 +270,6 @@
           </li>
         </ul>
 
-        <article class="president-profile" aria-labelledby="president-profile-title">
-          <div class="president-profile-layout">
-            <figure class="president-profile-photo">
-              <img
-                src="IMG_0521.jpeg"
-                alt="Mr. Murugesu Sahadevan, President of ESSTA"
-                width="280"
-                height="280"
-                loading="lazy"
-              >
-            </figure>
-            <div class="president-profile-content">
-              <p class="section-label">Leadership</p>
-              <h3 id="president-profile-title">President Profile</h3>
-              <p class="president-profile-name">Mr. Murugesu Sahadevan (Saha)</p>
-              <ul class="president-profile-list">
-                <li>Studied at Skandavarodaya College.</li>
-                <li>Worked in Sri Lanka as a Pharmacist.</li>
-                <li>Left for West Germany from 1978 to 1988.</li>
-                <li>Migrated to Edmonton in 1988.</li>
-                <li>He was the President of the Edmonton Tamil Cultural Association in 2013.</li>
-                <li>He is the first President of ESSTA.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -625,6 +607,38 @@
       <a href="#top" class="back-to-top">Back to top</a>
     </div>
   </footer>
+
+  <dialog id="president-profile-dialog" class="president-profile-dialog" aria-labelledby="president-profile-title">
+    <article class="president-profile">
+      <button type="button" class="profile-dialog-close" aria-label="Close profile">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="president-profile-layout">
+        <figure class="president-profile-photo">
+          <img
+            src="IMG_0521.jpeg"
+            alt="Mr. Murugesu Sahadevan, President of ESSTA"
+            width="280"
+            height="280"
+            loading="lazy"
+          >
+        </figure>
+        <div class="president-profile-content">
+          <p class="section-label">Leadership</p>
+          <h3 id="president-profile-title">President Profile</h3>
+          <p class="president-profile-name">Mr. Murugesu Sahadevan (Saha)</p>
+          <ul class="president-profile-list">
+            <li>Studied at Skandavarodaya College.</li>
+            <li>Worked in Sri Lanka as a Pharmacist.</li>
+            <li>Left for West Germany from 1978 to 1988.</li>
+            <li>Migrated to Edmonton in 1988.</li>
+            <li>He was the President of the Edmonton Tamil Cultural Association in 2013.</li>
+            <li>He is the first President of ESSTA.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </dialog>
 
   <script src="js/main.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>

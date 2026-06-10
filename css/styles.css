@@ -123,7 +123,7 @@ a:hover {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -624,6 +624,27 @@ a:hover {
   border-color: rgba(201, 162, 39, 0.55);
 }
 
+.board-card-button {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.board-card-button:focus-visible {
+  outline: 2px solid var(--color-maroon);
+  outline-offset: 3px;
+  border-radius: var(--radius-md);
+}
+
 .board-role {
   align-self: flex-start;
   padding: 0.35rem 0.85rem;
@@ -692,15 +713,74 @@ a:hover {
   border-radius: 999px;
 }
 
+html.is-modal-open {
+  overflow: hidden;
+}
+
+html.is-modal-open body {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.president-profile-dialog {
+  border: none;
+  padding: 0;
+  width: min(52rem, calc(100vw - 2rem));
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: transparent;
+  margin: auto;
+}
+
+.president-profile-dialog::backdrop {
+  background: rgba(30, 10, 14, 0.55);
+}
+
 .president-profile {
   max-width: 52rem;
-  margin: 3rem auto 0;
+  margin: 0;
   background: linear-gradient(180deg, var(--color-white), var(--color-cream));
   border-radius: var(--radius-lg);
   border: 1px solid rgba(122, 31, 43, 0.1);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-medium);
   overflow: hidden;
   position: relative;
+}
+
+.profile-dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(122, 31, 43, 0.08);
+  color: var(--color-maroon-dark);
+  font-size: 1.65rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.profile-dialog-close:hover {
+  background: var(--color-maroon);
+  color: var(--color-white);
+}
+
+.profile-dialog-close:focus-visible {
+  outline: 2px solid var(--color-maroon);
+  outline-offset: 2px;
 }
 
 .president-profile::before {

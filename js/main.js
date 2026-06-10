@@ -28,6 +28,50 @@
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.site-nav a');
 
+  const presidentCardButton = document.getElementById('president-board-card');
+  const presidentDialog = document.getElementById('president-profile-dialog');
+  const presidentDialogClose = presidentDialog
+    ? presidentDialog.querySelector('.profile-dialog-close')
+    : null;
+
+  if (presidentCardButton && presidentDialog && typeof presidentDialog.showModal === 'function') {
+    let savedScrollY = 0;
+
+    function lockPageScroll() {
+      savedScrollY = window.scrollY;
+      document.documentElement.classList.add('is-modal-open');
+      document.body.style.top = '-' + savedScrollY + 'px';
+    }
+
+    function unlockPageScroll() {
+      document.documentElement.classList.remove('is-modal-open');
+      document.body.style.top = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    presidentCardButton.addEventListener('click', function () {
+      lockPageScroll();
+      presidentDialog.showModal();
+    });
+
+    if (presidentDialogClose) {
+      presidentDialogClose.addEventListener('click', function () {
+        presidentDialog.close();
+      });
+    }
+
+    presidentDialog.addEventListener('click', function (event) {
+      if (event.target === presidentDialog) {
+        presidentDialog.close();
+      }
+    });
+
+    presidentDialog.addEventListener('close', function () {
+      unlockPageScroll();
+      presidentCardButton.focus();
+    });
+  }
+
   if (sections.length && navItems.length && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       function (entries) {
