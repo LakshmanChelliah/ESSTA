@@ -844,32 +844,10 @@ html.is-modal-open body {
   color: var(--color-maroon);
 }
 
-.president-profile-list {
+.president-profile-bio {
   margin: 0;
-  padding: 0;
-  list-style: none;
   color: var(--color-text-muted);
-}
-
-.president-profile-list li {
-  position: relative;
-  padding-left: 1.35rem;
-  line-height: 1.55;
-}
-
-.president-profile-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.58em;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--color-gold);
-}
-
-.president-profile-list li + li {
-  margin-top: 0.7rem;
+  line-height: 1.6;
 }
 
 /* Below the 3-up layout, stack into a single tidy column (no stranded
