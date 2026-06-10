@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Edmonton Senior Sri Lankan Tamils Association (ESSTA), fostering healthy, vibrant living for senior Tamils in Edmonton through social participation and community engagement.">
+  <meta property="og:title" content="ESSTA | Edmonton Senior Sri Lankan Tamils Association">
+  <meta property="og:description" content="Supporting Edmonton's senior Sri Lankan Tamil community through social participation, wellness, companionship, and cultural connection.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://essta.ca">
+  <meta property="og:image" content="https://essta.ca/essta.png">
+  <meta name="theme-color" content="#5c1520">
   <title>ESSTA | Edmonton Senior Sri Lankan Tamils Association</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260608c">
-  <link rel="icon" href="essta.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css?v=20260610a">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="favicon-180.png">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -178,7 +185,7 @@
             </p>
           </div>
           <div class="about-visual">
-            <img class="about-logo" src="essta.png" alt="ESSTA logo" width="192" height="192">
+            <img class="about-logo" src="essta.png" alt="ESSTA logo" width="240" height="240" style="width:15rem;height:auto;">
           </div>
         </div>
       </div>
@@ -217,7 +224,7 @@
             </div>
           </li>
           <li class="board-card">
-            <span class="board-role">Joint Secretary</span>
+            <span class="board-role">Joint Secretaries</span>
             <div class="board-member">
               <span class="board-avatar" aria-hidden="true">ST</span>
               <span class="board-person">
@@ -229,7 +236,7 @@
               <span class="board-avatar" aria-hidden="true">YS</span>
               <span class="board-person">
                 <span class="board-name">Mrs. Yogeswary Sivaganesanathan</span>
-                <span class="board-nickname">Yoge</span>
+                <span class="board-nickname">Yoga</span>
               </span>
             </div>
           </li>
@@ -239,21 +246,48 @@
               <span class="board-avatar" aria-hidden="true">SS</span>
               <span class="board-person">
                 <span class="board-name">Mr. Sinnathurai Subramaniam</span>
-                <span class="board-nickname">Subra</span>
+                <span class="board-nickname">Sub</span>
               </span>
             </div>
           </li>
           <li class="board-card">
             <span class="board-role">Director</span>
             <div class="board-member">
-              <span class="board-avatar" aria-hidden="true">ST</span>
+              <span class="board-avatar" aria-hidden="true">SK</span>
               <span class="board-person">
                 <span class="board-name">Mr. Srikumar Thevarajah</span>
-                <span class="board-nickname">Kumar</span>
+                <span class="board-nickname">Sri</span>
               </span>
             </div>
           </li>
         </ul>
+
+        <article class="president-profile" aria-labelledby="president-profile-title">
+          <div class="president-profile-layout">
+            <figure class="president-profile-photo">
+              <img
+                src="IMG_0521.jpeg"
+                alt="Mr. Murugesu Sahadevan, President of ESSTA"
+                width="280"
+                height="280"
+                loading="lazy"
+              >
+            </figure>
+            <div class="president-profile-content">
+              <p class="section-label">Leadership</p>
+              <h3 id="president-profile-title">President Profile</h3>
+              <p class="president-profile-name">Mr. Murugesu Sahadevan (Saha)</p>
+              <ul class="president-profile-list">
+                <li>Studied at Skandavarodaya College.</li>
+                <li>Worked in Sri Lanka as a Pharmacist.</li>
+                <li>Left for West Germany from 1978 to 1988.</li>
+                <li>Migrated to Edmonton in 1988.</li>
+                <li>He was the President of the Edmonton Tamil Cultural Association in 2013.</li>
+                <li>He is the first President of ESSTA.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -322,94 +356,216 @@
         </div>
 
         <form class="membership-form" id="membership-form" novalidate>
-          <div class="form-grid">
-            <div class="form-field form-field-full">
-              <label for="full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="full-name"
-                name="fullName"
-                autocomplete="name"
-                required
-                aria-required="true"
-              >
-              <span class="field-error" id="full-name-error" role="alert"></span>
-            </div>
+          <p class="form-required-note"><span class="required" aria-hidden="true">*</span> Required fields</p>
 
-            <div class="form-field form-field-full">
-              <label for="address">Address <span class="required" aria-hidden="true">*</span></label>
-              <textarea
-                id="address"
-                name="address"
-                rows="3"
-                autocomplete="street-address"
-                required
-                aria-required="true"
-              ></textarea>
-              <span class="field-error" id="address-error" role="alert"></span>
-            </div>
+          <div class="form-submit-error" id="form-submit-error" role="alert" hidden></div>
 
-            <div class="form-field">
-              <label for="date-of-birth">Date of Birth <span class="optional">(optional)</span></label>
-              <input
-                type="date"
-                id="date-of-birth"
-                name="dateOfBirth"
-                autocomplete="bday"
-              >
-            </div>
-
-            <div class="form-field">
-              <label for="telephone">Telephone Number <span class="required" aria-hidden="true">*</span></label>
-              <input
-                type="tel"
-                id="telephone"
-                name="telephone"
-                autocomplete="tel"
-                required
-                aria-required="true"
-              >
-              <span class="field-error" id="telephone-error" role="alert"></span>
-            </div>
-
-            <div class="form-field form-field-full">
-              <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                autocomplete="email"
-                required
-                aria-required="true"
-              >
-              <span class="field-error" id="email-error" role="alert"></span>
-            </div>
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="form-honey">Leave this empty</label>
+            <input type="text" id="form-honey" name="_honey" tabindex="-1" autocomplete="off">
           </div>
 
-          <div class="form-field form-field-full form-checkbox-field">
-            <div class="checkbox-group" id="membership-confirm-group">
-              <input
-                type="checkbox"
-                id="membership-confirm"
-                name="membershipConfirm"
-                required
-                aria-required="true"
-                aria-describedby="membership-confirm-error membership-dues-note"
-              >
-              <label for="membership-confirm">
-                I wish to join as a member of the Edmonton Senior Sri Lankan Tamils Association
-                and confirm that I have reached 60 years of age.
-                <span class="required" aria-hidden="true">*</span>
+          <fieldset class="form-section">
+            <legend class="form-section-title">Your Information</legend>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="full-name"
+                  name="fullName"
+                  autocomplete="name"
+                  placeholder="e.g. Murugesu Sahadevan"
+                  required
+                  aria-required="true"
+                  aria-describedby="full-name-error"
+                >
+                <span class="field-error" id="full-name-error" role="alert"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="date-of-birth">Date of Birth <span class="optional">(optional)</span></label>
+                <input
+                  type="date"
+                  id="date-of-birth"
+                  name="dateOfBirth"
+                  autocomplete="bday"
+                >
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="address">Home Address <span class="required" aria-hidden="true">*</span></label>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="3"
+                  autocomplete="street-address"
+                  placeholder="Unit, street, city, province, postal code"
+                  required
+                  aria-required="true"
+                  aria-describedby="address-error"
+                ></textarea>
+                <span class="field-error" id="address-error" role="alert"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section">
+            <legend class="form-section-title">How to Reach You</legend>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="telephone">Phone Number <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  autocomplete="tel"
+                  placeholder="e.g. (780) 555-0123"
+                  inputmode="tel"
+                  required
+                  aria-required="true"
+                  aria-describedby="telephone-error"
+                >
+                <span class="field-error" id="telephone-error" role="alert"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="e.g. you@email.com"
+                  inputmode="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="email-error"
+                >
+                <span class="field-error" id="email-error" role="alert"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section">
+            <legend class="form-section-title">Emergency Contact</legend>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="emergency-contact-name">Contact Name <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="emergency-contact-name"
+                  name="emergencyContactName"
+                  autocomplete="section-emergency name"
+                  placeholder="e.g. spouse or family member"
+                  required
+                  aria-required="true"
+                  aria-describedby="emergency-contact-name-error"
+                >
+                <span class="field-error" id="emergency-contact-name-error" role="alert"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="emergency-contact-phone">Contact Phone <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="tel"
+                  id="emergency-contact-phone"
+                  name="emergencyContactPhone"
+                  autocomplete="section-emergency tel"
+                  placeholder="e.g. (780) 555-0199"
+                  inputmode="tel"
+                  required
+                  aria-required="true"
+                  aria-describedby="emergency-contact-phone-error"
+                >
+                <span class="field-error" id="emergency-contact-phone-error" role="alert"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section">
+            <legend class="form-section-title">Interested Topics <span class="optional">(optional)</span></legend>
+            <p class="form-section-lead">Say what you would like to participate in.</p>
+
+            <div class="topic-options" role="group" aria-label="Interested topics">
+              <label class="topic-option">
+                <input type="checkbox" name="interestedTopics" value="volunteering">
+                <span>Volunteering</span>
+              </label>
+              <label class="topic-option">
+                <input type="checkbox" name="interestedTopics" value="walking">
+                <span>Walking</span>
+              </label>
+              <label class="topic-option topic-option-other">
+                <input
+                  type="checkbox"
+                  id="interested-topic-other-check"
+                  name="interestedTopics"
+                  value="other"
+                  aria-controls="interested-topic-other"
+                >
+                <span class="topic-other-label" id="interested-topic-other-label">Other</span>
+                <input
+                  type="text"
+                  class="topic-other-input"
+                  id="interested-topic-other"
+                  name="interestedTopicOther"
+                  placeholder="Please specify"
+                  disabled
+                  aria-labelledby="interested-topic-other-label"
+                >
               </label>
             </div>
-            <p class="dues-note" id="membership-dues-note">Annual membership dues: $30 CAD per person, per year (June&ndash;May).</p>
-            <span class="field-error" id="membership-confirm-error" role="alert"></span>
-          </div>
+          </fieldset>
 
-          <p class="form-note"><span class="required" aria-hidden="true">*</span> Required fields</p>
+          <fieldset class="form-section">
+            <legend class="form-section-title">About You</legend>
+
+            <div class="form-field form-field-full">
+              <label for="member-intro">
+                Tell us about yourself and what you may bring to the group
+                <span class="optional">(optional)</span>
+              </label>
+              <textarea
+                id="member-intro"
+                name="memberIntro"
+                rows="5"
+                maxlength="1000"
+                placeholder="For example: your background, interests, skills, or how you would like to contribute to the ESSTA community."
+              ></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section form-section-agreement">
+            <legend class="form-section-title">Confirm Membership</legend>
+
+            <div class="form-field form-field-full form-checkbox-field">
+              <div class="checkbox-group" id="membership-confirm-group">
+                <input
+                  type="checkbox"
+                  id="membership-confirm"
+                  name="Membership Age Confirm"
+                  value="Yes"
+                  required
+                  aria-required="true"
+                  aria-describedby="membership-confirm-error membership-dues-note"
+                >
+                <label for="membership-confirm">
+                  I wish to join the Edmonton Senior Sri Lankan Tamils Association
+                  and confirm that I am 60 years of age or older.
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+              </div>
+              <p class="dues-note" id="membership-dues-note">Annual dues: <strong>$30 CAD</strong> per person (June&ndash;May membership year).</p>
+              <span class="field-error" id="membership-confirm-error" role="alert"></span>
+            </div>
+          </fieldset>
 
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Submit Application</button>
+            <button type="submit" class="btn btn-primary" id="membership-submit">Submit Application</button>
             <button type="reset" class="btn btn-secondary btn-outline">Clear Form</button>
           </div>
         </form>
@@ -470,7 +626,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js" defer></script>
   <script src="js/globe.js?v=20260608h" defer></script>

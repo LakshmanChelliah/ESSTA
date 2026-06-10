@@ -4,11 +4,24 @@
     "board_members": [
       { "role": "President", "name": "Mr. Murugesu Sahadevan", "nickname": "Saha" },
       { "role": "Vice President", "name": "Mr. Balasubramaniam Ramalingam", "nickname": "Bala" },
-      { "role": "Joint Secretary", "name": "Mrs. Sivashanthi Thiagarajah", "nickname": "Shanthi" },
-      { "role": "Joint Secretary", "name": "Mrs. Yogeswary Sivaganesanathan", "nickname": "Yoge" },
-      { "role": "Treasurer", "name": "Mr. Sinnathurai Subramaniam", "nickname": "Subra" },
-      { "role": "Director", "name": "Mr. Srikumar Thevarajah", "nickname": "Kumar" }
+      { "role": "Joint Secretaries", "name": "Mrs. Sivashanthi Thiagarajah", "nickname": "Shanthi" },
+      { "role": "Joint Secretaries", "name": "Mrs. Yogeswary Sivaganesanathan", "nickname": "Yoga" },
+      { "role": "Treasurer", "name": "Mr. Sinnathurai Subramaniam", "nickname": "Sub" },
+      { "role": "Director", "name": "Mr. Srikumar Thevarajah", "nickname": "Sri" }
     ],
+    "president_profile": {
+      "name": "Mr. Murugesu Sahadevan",
+      "nickname": "Saha",
+      "image": "IMG_0521.jpeg",
+      "bio": [
+      "Studied at Skandavarodaya College.",
+      "Worked in Sri Lanka as a Pharmacist.",
+      "Left for West Germany from 1978 to 1988.",
+      "Migrated to Edmonton in 1988.",
+      "He was the President of the Edmonton Tamil Cultural Association in 2013.",
+      "He is the first President of ESSTA."
+      ]
+    },
     "contact": {
       "address": {
         "unit": "125",
@@ -24,11 +37,16 @@
         "rosa.yoga@hotmail.com"
       ]
     },
+    "membership_form": {
+      "subject": "New ESSTA Membership Application",
+      "template": "table"
+    },
     "membership": {
       "fee": 30,
       "currency": "CAD",
       "unit": "per person per year",
-      "term": "June to May"
+      "term": "June to May",
+      "interested_topics": ["Volunteering", "Walking", "Other"]
     }
   }
 }

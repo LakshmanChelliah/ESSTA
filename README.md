@@ -24,27 +24,43 @@ Then visit [http://localhost:8080](http://localhost:8080).
 
 ```
 ESSLTA/
-├── index.html          # Main page
+├── index.html           # Main page
+├── essta-info.json      # Organisation data and form config (edit emails here)
 ├── css/
-│   └── styles.css      # Styles
+│   └── styles.css       # Styles
 ├── js/
-│   └── main.js         # Navigation & interactions
+│   ├── main.js          # Navigation, form validation & submission
+│   └── globe.js         # Animated globe in the hero section
+├── IMG_0520.JPG         # Logo (used as favicon and in-page logo)
 └── README.md
 ```
 
 ## Sections
 
-- **Hero**: Association name and mission summary
+- **Hero**: Association name, mission summary, and animated globe
 - **Heritage**: Tamil history and Sri Lankan Tamil migration
 - **Our Community**: Edmonton Tamil community contributions
 - **About ESSTA**: Purpose of the association
+- **Leadership**: Board of Directors and President profile
 - **Programs**: Objectives and planned activities
-- **Contact**: Get in touch (update email/details as needed)
+- **Membership**: Application form (submits via FormSubmit)
+- **Contact**: Get in touch
+
+## Membership Form
+
+Applications are emailed using [FormSubmit](https://formsubmit.co). Recipients are configured in `essta-info.json`:
+
+- **Primary:** `contact.inquiries_email` (`info@essta.ca`)
+- **CC:** `contact.other_emails` (joint secretaries)
+
+**First-time setup:** After deploying, submit one test application. FormSubmit sends an activation link to `info@essta.ca` — click it once to enable delivery. CC recipients do not need to activate.
+
+To change who receives applications, edit the email addresses in `essta-info.json` only.
 
 ## Customization
 
-- Update the contact email in `index.html` (`info@essta.ca` is a placeholder)
-- Add photos, event listings, or a membership form as the association grows
+- To change recipient emails, edit `essta-info.json` — do not edit `index.html` or `main.js`
+- To change the form subject line, edit `membership_form.subject` in `essta-info.json`
 - Deploy to GitHub Pages, Netlify, or Vercel for a public URL
 
 ## License
